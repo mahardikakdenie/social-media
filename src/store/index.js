@@ -8,11 +8,16 @@ export default new Vuex.Store({
     data: [
       {
         text: "<blockquote>asdasdsadsad</blockquote>",
+        comments: [
+          {
+            text: "",
+          },
+        ],
       },
     ],
   },
   mutations: {
-    SET_DATA: (state, payload) => (state.data = payload.data),
+    SET_DATA: (state, payload) => state.data.push(payload),
   },
   actions: {},
   modules: {},

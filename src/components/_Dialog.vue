@@ -26,6 +26,7 @@
               <Input elevation="0" title="Comment" />
             </v-row>
             <v-row>
+              {{ comments }}
               <v-col>
                 <displayComponents />
               </v-col>
@@ -51,6 +52,15 @@ export default {
     title: {
       type: String,
       default: () => "",
+    },
+    index: {
+      type: Number,
+      default: () => 0,
+    },
+  },
+  computed: {
+    comments() {
+      return this.$store.state.data[this.index].comments;
     },
   },
   components: {

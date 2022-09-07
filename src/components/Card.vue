@@ -1,6 +1,13 @@
 <template>
   <v-col cols="12">
-    <displayComponents isComments @openComments="openDialog" />
+    <displayComponents
+      v-for="(item, i) in data"
+      :key="i"
+      :text="item.text"
+      class="mt-4"
+      isComments
+      @openComments="openDialog"
+    />
     <dialogComponents
       :dialog="dialog"
       title="Comments"
@@ -17,9 +24,14 @@ export default {
   },
   data: () => ({
     dialog: {
-      open: true,
+      open: false,
     },
   }),
+  computed: {
+    data() {
+      return this.$store.state.data;
+    },
+  },
   methods: {
     openDialog() {
       this.dialog.open = !this.dialog.open;

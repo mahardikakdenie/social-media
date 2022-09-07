@@ -30,7 +30,16 @@ export default {
   }),
   methods: {
     submit(text) {
-      console.log("text : ", text);
+      const data = {
+        text: text,
+        comments: [
+          {
+            text: "",
+          },
+        ],
+      };
+      console.log("text : ", data);
+      this.$store.commit("SET_DATA", data);
     },
   },
 };

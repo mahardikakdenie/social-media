@@ -11,14 +11,7 @@
       <span class="text--sm"> 22 maret 2002 - 21:09 </span>
     </v-card-title>
     <v-divider></v-divider>
-    <v-card-text>
-      <span class="black--text">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et nobis
-        commodi aut labore natus quasi minus quo alias nesciunt. Magni ratione
-        maxime pariatur voluptates distinctio quisquam vero rem libero
-        blanditiis?
-      </span>
-    </v-card-text>
+    <v-card-text v-html="text" />
     <v-card-actions>
       <v-btn text color="">
         <v-icon color="primary">mdi-thumb-up</v-icon>
@@ -44,6 +37,10 @@ export default {
     isComments: {
       type: Boolean,
       default: () => false,
+    },
+    text: {
+      type: String,
+      default: () => "",
     },
   },
   methods: {
