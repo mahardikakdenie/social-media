@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-dialog width="60%" v-model="dialog.open">
+    <v-dialog :persistent="persistent" width="50%" v-model="dialog.open">
       <v-card>
         <v-system-bar
           :color="$vuetify.theme.dark ? '#141C31' : '#F0F8FF'"
@@ -18,19 +18,38 @@
 
           <v-spacer />
 
-          <v-icon @click="dialog.open = false"> mdi-close </v-icon>
+          <v-icon v-if="dontClose" @click="dialog.open = false">
+            mdi-close
+          </v-icon>
         </v-system-bar>
         <div>
           <v-container>
-            <v-row>
-              <Input elevation="0" title="Comment" />
-            </v-row>
-            <v-row>
-              {{ comments }}
-              <v-col>
-                <displayComponents />
-              </v-col>
-            </v-row>
+            <v-form>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" v-for="(i, key) in dataUser" :key="key">
+                    <v-text-field
+                      v-if="key === 'username'"
+                      v-model="dataUser[key]"
+                      :label="formatTitle(key)"
+                      outlined
+                    ></v-text-field>
+                    <v-textarea
+                      v-model="dataUser[key]"
+                      v-if="key === 'description'"
+                      outlined
+                      :label="formatTitle(key)"
+                    ></v-textarea>
+                  </v-col>
+                  <v-col class="d-flex justify-end">
+                    <v-btn @click="createUsername" color="primary">
+                      <span class="white--text"> Create Username</span>
+                      <v-icon small class="ml-2" color="white">mdi-send</v-icon>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-form>
           </v-container>
         </div>
       </v-card>
@@ -57,17 +76,42 @@ export default {
       type: Number,
       default: () => 0,
     },
+    persistent: {
+      type: Boolean,
+      default: () => false,
+    },
+    dontClose: {
+      type: Boolean,
+      default: () => false,
+    },
   },
+  data: () => ({
+    dataUser: {
+      username: "",
+      description: "",
+    },
+  }),
   computed: {
+    // user() {
+    //   return this.$store.state.user;
+    // },
     comments() {
       return this.$store.state.data[this.index].comments;
     },
   },
-  components: {
-    Input: () => import("@/components/Input"),
-    displayComponents: () => import("@/components/_Display"),
-
-    // CardComponents: () => import("@/components/Card"),
+  methods: {
+    uppercaseFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+    formatTitle(str) {
+      return this.uppercaseFirstLetter(str.replace(/([A-Z])/g, " $1").trim())
+        .split("Id")
+        .join("");
+    },
+    createUsername() {
+      this.$store.commit("SET_USER", this.dataUser);
+      this.dialog.open = false;
+    },
   },
 };
 </script>

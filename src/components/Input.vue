@@ -12,7 +12,7 @@
       <quillEditor v-model="text" class="text--status" />
     </v-card>
     <v-card-actions class="d-flex justify-end">
-      <v-btn color="error">
+      <v-btn @click="clear" color="error">
         <span class="white--text"> Clear</span>
         <v-icon small class="ml-2" color="white">mdi-close</v-icon>
       </v-btn>
@@ -51,6 +51,10 @@ export default {
   methods: {
     send() {
       this.$emit("submit", this.text);
+      this.text = "";
+    },
+    clear() {
+      this.text = "";
     },
   },
 };

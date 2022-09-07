@@ -18,6 +18,7 @@
 </template>
 
 <script>
+// import moment from "moment";
 export default {
   name: "HelloWorld",
   components: {
@@ -28,18 +29,21 @@ export default {
   data: () => ({
     text: "",
   }),
+  mounted() {
+    const date = new Date();
+    console.log("data : ", this.timeFormat(date));
+  },
   methods: {
     submit(text) {
       const data = {
         text: text,
-        comments: [
-          {
-            text: "",
-          },
-        ],
+        date: this.timeFormat(new Date()),
       };
       console.log("text : ", data);
       this.$store.commit("SET_DATA", data);
+    },
+    timeFormat(url) {
+      return url.toString().split(" ").splice(0, 5).join(" ");
     },
   },
 };

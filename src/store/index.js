@@ -5,19 +5,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    data: [
-      {
-        text: "<blockquote>asdasdsadsad</blockquote>",
-        comments: [
-          {
-            text: "",
-          },
-        ],
-      },
-    ],
+    data: [],
+    user: {
+      username: "Dummy Data",
+      description: "Programmer",
+    },
   },
   mutations: {
     SET_DATA: (state, payload) => state.data.push(payload),
+    SET_USER: (state, payload) => {
+      for (const key in payload) {
+        if (Object.hasOwnProperty.call(payload, key)) {
+          state.user[key] = payload[key];
+        }
+      }
+    },
   },
   actions: {},
   modules: {},

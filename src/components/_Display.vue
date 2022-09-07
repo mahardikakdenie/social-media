@@ -6,24 +6,15 @@
           <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"
         /></span>
       </v-avatar>
-      <span class="primary--text"> User</span>
+      <span class="primary--text cursor-pointer"> {{ user.username }}</span>
       <v-spacer></v-spacer>
-      <span class="text--sm"> 22 maret 2002 - 21:09 </span>
+      <span class="text--sm"> {{ date }} </span>
     </v-card-title>
     <v-divider></v-divider>
     <v-card-text v-html="text" />
     <v-card-actions>
-      <v-btn text color="">
-        <v-icon color="primary">mdi-thumb-up</v-icon>
-      </v-btn>
-      <v-btn text color="error">
-        <v-icon color="error">mdi-thumb-down</v-icon>
-      </v-btn>
       <v-spacer></v-spacer>
-      <v-btn v-if="isComments" @click="openComments" color="primary" text>
-        <span style="font-size: 21px" class="mr-2">6</span>
-        <v-icon color="primary">mdi-comment-multiple-outline</v-icon>
-      </v-btn>
+
       <v-btn color="primary" text>
         <v-icon color="error">mdi-delete</v-icon>
       </v-btn>
@@ -42,6 +33,15 @@ export default {
       type: String,
       default: () => "",
     },
+    date: {
+      type: String,
+      default: () => "",
+    },
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
   },
   methods: {
     openComments() {
@@ -51,4 +51,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>

@@ -4,8 +4,8 @@
       v-for="(item, i) in data"
       :key="i"
       :text="item.text"
+      :date="item.date"
       class="mt-4"
-      isComments
       @openComments="openDialog"
     />
     <dialogComponents
