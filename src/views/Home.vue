@@ -3,7 +3,7 @@
     <HomeComponents />
     <Dialog
       persistent
-      icon="mdi-magnify"
+      icon="mdi-account"
       title="Create Username"
       :dialog="dialog"
     />
@@ -20,7 +20,7 @@ export default {
   }),
   components: {
     HomeComponents: () => import("@/components/HomeComponents.vue"),
-    Dialog: () => import("@/components/_Dialog"),
+    Dialog: () => import("@/components/Dialog"),
   },
 };
 </script>

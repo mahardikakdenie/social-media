@@ -29,10 +29,7 @@ export default {
   data: () => ({
     text: "",
   }),
-  mounted() {
-    const date = new Date();
-    console.log("data : ", this.timeFormat(date));
-  },
+
   methods: {
     submit(text) {
       const data = {
@@ -55,7 +52,7 @@ export default {
 }
 .quill-editor {
   .ql-container {
-    height: 150px;
+    height: auto;
   }
 }
 </style>

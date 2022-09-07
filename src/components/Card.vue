@@ -21,8 +21,8 @@
 <script>
 export default {
   components: {
-    dialogComponents: () => import("@/components/_Dialog"),
-    displayComponents: () => import("@/components/_Display"),
+    dialogComponents: () => import("@/components/Dialog"),
+    displayComponents: () => import("@/components/Display"),
   },
   data: () => ({
     dialog: {

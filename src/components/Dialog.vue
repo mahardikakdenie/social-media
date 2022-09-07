@@ -34,12 +34,6 @@
                       :label="formatTitle(key)"
                       outlined
                     ></v-text-field>
-                    <v-textarea
-                      v-model="dataUser[key]"
-                      v-if="key === 'description'"
-                      outlined
-                      :label="formatTitle(key)"
-                    ></v-textarea>
                   </v-col>
                   <v-col class="d-flex justify-end">
                     <v-btn @click="createUsername" color="primary">

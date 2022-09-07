@@ -11,7 +11,11 @@
       <span class="text--sm"> {{ date }} </span>
     </v-card-title>
     <v-divider></v-divider>
-    <v-card-text v-html="text" />
+    <v-card-text class="ql-container ql-snow">
+      <div class="ql-editor">
+        <div v-html="text" />
+      </div>
+    </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
       <!-- 
@@ -50,7 +54,7 @@ export default {
     },
   },
   components: {
-    dialogComponents: () => import("@/components/_Dialog"),
+    dialogComponents: () => import("@/components/Dialog"),
   },
   data: () => ({
     dialog: {
@@ -66,7 +70,5 @@ export default {
 </script>
 
 <style lang="scss">
-.cursor-pointer {
-  cursor: pointer;
-}
+@import "~quill/dist/quill.snow.css";
 </style>
