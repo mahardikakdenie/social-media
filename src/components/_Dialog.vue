@@ -18,11 +18,11 @@
 
           <v-spacer />
 
-          <v-icon v-if="dontClose" @click="dialog.open = false">
+          <v-icon v-if="withClose" @click="dialog.open = false">
             mdi-close
           </v-icon>
         </v-system-bar>
-        <div>
+        <div v-if="!isNotice">
           <v-container>
             <v-form>
               <v-container>
@@ -50,6 +50,21 @@
                 </v-row>
               </v-container>
             </v-form>
+          </v-container>
+        </div>
+        <div v-else>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <h3>Are you sure you want to delete this status</h3>
+              </v-col>
+              <v-col class="d-flex justify-end">
+                <v-btn @click="deleteStatus(index)" color="error">
+                  <span class="white--text"> Create Username</span>
+                  <v-icon small class="ml-2" color="white">mdi-delete</v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
           </v-container>
         </div>
       </v-card>
@@ -80,7 +95,11 @@ export default {
       type: Boolean,
       default: () => false,
     },
-    dontClose: {
+    withClose: {
+      type: Boolean,
+      default: () => false,
+    },
+    isNotice: {
       type: Boolean,
       default: () => false,
     },
@@ -111,6 +130,9 @@ export default {
     createUsername() {
       this.$store.commit("SET_USER", this.dataUser);
       this.dialog.open = false;
+    },
+    deleteStatus(i) {
+      console.log(i);
     },
   },
 };

@@ -24,29 +24,16 @@
       </div>
 
       <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">{{ user.username }}</span>
+        <v-icon>mdi-account</v-icon>
+      </v-btn>
     </v-app-bar>
-
-    <v-navigation-drawer v-model="drawer" absolute bottom temporary>
-      <v-list nav dense>
-        <v-list-item-group active-class="deep-purple--text text--accent-4">
-          <v-list-item>
-            <v-list-item-title>Foo</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Bar</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Fizz</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Buzz</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
 
     <v-main>
       <router-view />
@@ -61,5 +48,10 @@ export default {
   data: () => ({
     drawer: false,
   }),
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+  },
 };
 </script>

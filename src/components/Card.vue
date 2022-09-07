@@ -5,10 +5,12 @@
       :key="i"
       :text="item.text"
       :date="item.date"
+      :index="i"
       class="mt-4"
       @openComments="openDialog"
     />
     <dialogComponents
+      :withClose="false"
       :dialog="dialog"
       title="Comments"
       icon="mdi-comment-multiple-outline"

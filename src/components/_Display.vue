@@ -14,11 +14,17 @@
     <v-card-text v-html="text" />
     <v-card-actions>
       <v-spacer></v-spacer>
-
-      <v-btn color="primary" text>
+      <!-- 
+      <v-btn @click="dialog.open = !dialog.open" color="primary" text>
         <v-icon color="error">mdi-delete</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-card-actions>
+    <dialogComponents
+      :dialog="dialog"
+      isNotice
+      title="Delete"
+      icon="mdi-delete"
+    />
   </v-card>
 </template>
 
@@ -43,6 +49,14 @@ export default {
       return this.$store.state.user;
     },
   },
+  components: {
+    dialogComponents: () => import("@/components/_Dialog"),
+  },
+  data: () => ({
+    dialog: {
+      open: false,
+    },
+  }),
   methods: {
     openComments() {
       this.$emit("openComments");
