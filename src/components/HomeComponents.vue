@@ -36,8 +36,7 @@ export default {
         text: text,
         date: this.timeFormat(new Date()),
       };
-      console.log("text : ", data);
-      this.$store.commit("SET_DATA", data);
+      this.$store.dispatch("list/setData", data);
     },
     timeFormat(url) {
       return url.toString().split(" ").splice(0, 5).join(" ");

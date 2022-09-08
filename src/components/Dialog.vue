@@ -104,14 +104,7 @@ export default {
       description: "",
     },
   }),
-  computed: {
-    // user() {
-    //   return this.$store.state.user;
-    // },
-    comments() {
-      return this.$store.state.data[this.index].comments;
-    },
-  },
+  computed: {},
   methods: {
     uppercaseFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
@@ -122,7 +115,7 @@ export default {
         .join("");
     },
     createUsername() {
-      this.$store.commit("SET_USER", this.dataUser);
+      this.$store.dispatch("user/setUser", this.dataUser);
       this.dialog.open = false;
     },
     deleteStatus(i) {
